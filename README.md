@@ -30,27 +30,5 @@
 
 ## 4.流程图
 
-```flow
-st=>start: 开始
-op=>operation: 加载csv
-cond=>condition: 加载成功(是或否?)
-sub1=>subroutine: 重复加载
-io=>inputoutput: 输入输出框
-op1=>operation: 创建角色
-op2=>operation: 发射弓箭
-cond2=>condition: 击中(是或否?)
-op3=>operation: 敌方角色扣血
-sub2=>subroutine: 重新发射
-cond3=>condition: hp<0?
-sub3=>subroutine: 继续
-op4=>operation: 死亡
-e=>end: 结束
-st->op->cond
-cond(yes)->op1->op2->cond2
-cond(no)->sub1(right)->op
-cond2(yes)->op3->cond3
-cond2(no)->sub2(right)->op2
-cond3(yes)->op4->e
-cond3(no)->sub3(right)->op2
-```
+![draw](https://github.com/89trillion-wangjian/AttackGame/blob/master/README.png)
 
