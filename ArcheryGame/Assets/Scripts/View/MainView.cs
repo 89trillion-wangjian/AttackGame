@@ -17,21 +17,26 @@ public class MainView : MonoBehaviour
     {
         Action<BuffModel[]> buf = ReadJson;
         TableParser<BuffModel>.Parse("ArmyModel", buf);
-        CreateEnemy();
     }
 
     public void ReadJson(BuffModel[] buf)
     {
         Debug.Log(buf[0].id);
         
-        myPlayer.GetComponent<MyPlayer>().GetPlayerData(buf[0]);
+        CreateEnemy(buf[0]);
     }
 
     /**
-     * 创建敌方角色
+     * 创建角色
      */
-    public void CreateEnemy()
+    public void CreateEnemy(BuffModel buf)
     {
+        GameObject myPlayer = Instantiate(this.myPlayer);
+        myPlayer.transform.SetParent(this.transform, false);
+        myPlayer.transform.localPosition = new Vector3(-16, 1.16f, -43);
+        myPlayer.GetComponent<MyPlayer>().GetPlayerData(buf);
+        
+        
         GameObject enemy = Instantiate(prebEnemy);
         enemy.transform.SetParent(this.transform, false);
         float x = Random.Range(-20f, -12f);

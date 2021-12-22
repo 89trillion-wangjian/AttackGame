@@ -94,11 +94,16 @@ public class MyPlayer : MonoBehaviour
         {
             transform.Translate(0, 0, walkSpeed * Time.deltaTime);
         }  
+        if(Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(0, 0, -walkSpeed * Time.deltaTime);
+        }
+        
         if(Input.GetKey(KeyCode.A))
         {
             // transform.Rotate(0, - turnSpeed * Time.deltaTime, 0);
             speed = 0;
-            anim.SetBool("attack", true);
+            anim.SetTrigger("attack");
             Invoke("OnFire", 0.3f);
                 // OnFire();
 
