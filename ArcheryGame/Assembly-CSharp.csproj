@@ -58,13 +58,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\RobotSphere\Assets\Scripts\RobotFreeAnim.cs" />
      <Compile Include="Assets\Scripts\Controller\ArrawCtrl.cs" />
-     <Compile Include="Assets\Scripts\Controller\BuffModel.cs" />
      <Compile Include="Assets\Scripts\Controller\EnemyCtrl.cs" />
-     <Compile Include="Assets\Scripts\Controller\GameModelManager.cs" />
      <Compile Include="Assets\Scripts\Controller\MyPlayer.cs" />
      <Compile Include="Assets\Scripts\Controller\PlayerCtrl.cs" />
+     <Compile Include="Assets\Scripts\Model\BuffModel.cs" />
+     <Compile Include="Assets\Scripts\Model\GameModelManager.cs" />
      <Compile Include="Assets\Scripts\Model\TableModel.cs" />
      <Compile Include="Assets\Scripts\TableRead\TableManager.cs" />
      <Compile Include="Assets\Scripts\TableRead\TableParser.cs" />
@@ -73,7 +72,7 @@
      <Compile Include="Assets\Scripts\View\FightDisplayHpView.cs" />
      <Compile Include="Assets\Scripts\View\MainView.cs" />
      <None Include="Assets\Effect\Groundfloor\Shaders\patch-924648.shader" />
-     <None Include="Assets\WW4_Effects_Sub\Effect\Soldier\FrostArcher\FrostArcher_effect\shader\Bingdong_vogeo.shader" />
+     <None Include="Assets\Res\WW4_Effects_Sub\Effect\Soldier\FrostArcher\FrostArcher_effect\shader\Bingdong_vogeo.shader" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/wangjian/Documents/unityFile/AttackGame/ArcheryGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

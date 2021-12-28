@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class ArrawCtrl : MonoBehaviour
 {
@@ -10,6 +11,16 @@ public class ArrawCtrl : MonoBehaviour
     void Start()
     {
         nodeEnemy = transform.parent.Find("enemy(Clone)");
+        StartCoroutine(MoveToTarget());
+    }
+
+    IEnumerator MoveToTarget()
+    {
+        while (transform.position != nodeEnemy.position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, nodeEnemy.position, speed * Time.deltaTime);
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     public void InitAttack(int atk)
@@ -18,13 +29,13 @@ public class ArrawCtrl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (!nodeEnemy)
-        {
-            return;
-        }
-
-        transform.position = Vector3.MoveTowards(transform.position, nodeEnemy.position, speed * Time.deltaTime);
-    }
+    // void Update()
+    // {
+    //     if (!nodeEnemy)
+    //     {
+    //         return;
+    //     }
+    //
+    //     transform.position = Vector3.MoveTowards(transform.position, nodeEnemy.position, speed * Time.deltaTime);
+    // }
 }

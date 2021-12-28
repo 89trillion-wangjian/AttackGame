@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Model;
-using TableConfig;
-using UnityEngine;
-
-public class Utils
+﻿namespace Utils
 {
-    private Utils()
+    public class Utils
     {
-    }
-
-    private static Utils _singleton = null;
-
-    public static Utils CreateInstance()
-    {
-        if (_singleton == null)
+        private Utils()
         {
-            _singleton = new Utils();
         }
 
-        return _singleton;
+        private static Utils _singleton = null;
+
+        public static Utils CreateInstance()
+        {
+            if (_singleton == null)
+            {
+                _singleton = new Utils();
+            }
+
+            return _singleton;
+        }
     }
 }

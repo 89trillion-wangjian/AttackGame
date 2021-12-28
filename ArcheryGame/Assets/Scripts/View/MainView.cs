@@ -40,5 +40,4 @@ public class MainView : MonoBehaviour
         enemy.transform.position = new Vector3(x, 1.6f, z);
     }
 
-    // Update is called once per frame
 }
