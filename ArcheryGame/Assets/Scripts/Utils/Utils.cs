@@ -7,16 +7,19 @@ using UnityEngine;
 
 public class Utils
 {
-        private Utils() { }
-        private static Utils _Singleton = null;
-        public static Utils CreateInstance()
+    private Utils()
+    {
+    }
+
+    private static Utils _singleton = null;
+
+    public static Utils CreateInstance()
+    {
+        if (_singleton == null)
         {
-            if (_Singleton == null)
-            {
-                _Singleton = new Utils();
-            }
-            return _Singleton;
+            _singleton = new Utils();
         }
 
-      
+        return _singleton;
+    }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Model;
 using UnityEngine;
+using View;
 
 public class MyPlayer : MonoBehaviour
 {
@@ -16,10 +17,15 @@ public class MyPlayer : MonoBehaviour
 
 
     private float speed = 10f;
-    
+
     private GameObject uiGameRoot;
 
     private Animator anim;
+
+    private static readonly int Run = Animator.StringToHash("run");
+    private static readonly int Idle = Animator.StringToHash("idle");
+    private static readonly int Attack = Animator.StringToHash("attack");
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +35,9 @@ public class MyPlayer : MonoBehaviour
     public void GetPlayerData(BuffModel playerData)
     {
         mySelf = new Player(playerData);
-        
+
         uiGameRoot = GameObject.Find("Canvas");
-        uiGameRoot.GetComponent<FightDisplayHpView>().freshHpValue(mySelf.MaxHp, Role.player);
+        uiGameRoot.GetComponent<FightDisplayHpView>().FreshHpValue(mySelf.MaxHp, Role.Player);
     }
 
     /**
@@ -39,41 +45,38 @@ public class MyPlayer : MonoBehaviour
      */
     public void OnFire()
     {
-        
         nodeEnemy = transform.parent.Find("enemy(Clone)");
         if (!nodeEnemy)
         {
             return;
         }
 
-        GameObject arraw = Instantiate(prebArrow);
-        arraw.transform.SetParent(transform.parent, false);
+        GameObject arraw = Instantiate(prebArrow, transform.parent, false);
         arraw.GetComponent<ArrawCtrl>().InitAttack(mySelf.Atk);
-        arraw.transform.position = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
+        var position = transform.position;
+        arraw.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
 
         arraw.transform.LookAt(nodeEnemy.position);
     }
-    
-    
-     
+
 
     // Update is called once per frame
     void Update()
     {
-        
         if (Input.GetKey(KeyCode.R))
         {
             Debug.Log("跑步动画");
-            anim.SetBool("run", true);
-        }else if (Input.GetKeyUp(KeyCode.R))
+            anim.SetBool(Run, true);
+        }
+        else if (Input.GetKeyUp(KeyCode.R))
         {
-            anim.SetBool("run", false);
+            anim.SetBool(Run, false);
         }
 
         if (Input.GetKey(KeyCode.I))
         {
             Debug.Log("待机动画");
-            anim.SetBool("idle", true);
+            anim.SetBool(Idle, true);
         }
         // else if (Input.GetKeyUp(KeyCode.I))
         // {
@@ -83,37 +86,31 @@ public class MyPlayer : MonoBehaviour
 
 
         speed += Time.deltaTime;
-        
-        if (mySelf == null || speed < mySelf.ShootSpeed )
+
+        if (mySelf == null || speed < mySelf.ShootSpeed)
         {
             return;
         }
-        
-        
-        if(Input.GetKey(KeyCode.W))
+
+
+        if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(0, 0, walkSpeed * Time.deltaTime);
-        }  
-        if(Input.GetKey(KeyCode.S))
+        }
+
+        if (Input.GetKey(KeyCode.S))
         {
             transform.Translate(0, 0, -walkSpeed * Time.deltaTime);
         }
-        
-        if(Input.GetKey(KeyCode.A))
+
+        if (Input.GetKey(KeyCode.A))
         {
             // transform.Rotate(0, - turnSpeed * Time.deltaTime, 0);
             speed = 0;
-            anim.SetTrigger("attack");
+            anim.SetTrigger(Attack);
             Invoke("OnFire", 0.3f);
-                // OnFire();
-
+            // OnFire();
         }
-        else
-        {
-            anim.SetBool("attack", false);
-        }
-
-
     }
 }
 
@@ -127,6 +124,7 @@ public class Player
     public int Atk;
     public int Def;
     public int ShootSpeed;
+
     public Player(BuffModel buf)
     {
         id = buf.id;
@@ -137,5 +135,4 @@ public class Player
         Def = buf.Def;
         ShootSpeed = buf.ShootSpeed;
     }
-    
 }

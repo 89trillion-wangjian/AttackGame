@@ -15,6 +15,7 @@ namespace Model
         public int Def;
         public int ShootSpeed;
         public Dictionary<string, string> ParsePerValue { get; set; }
+
         public override object Key()
         {
             throw new NotImplementedException();

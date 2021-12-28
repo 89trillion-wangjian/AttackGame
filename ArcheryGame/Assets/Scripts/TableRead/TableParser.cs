@@ -15,6 +15,7 @@ namespace TableConfig
 
         //表路径
         private static string TABLE_PATH = "Json/{0}";
+
         //字段信息行(当前.py中只导出字段与有效数据 所以为1 *这行之下必须数据)
         private const int PROPERTY_ROW = 1;
 

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using model;
 using Model;
 using TableConfig;
 using UnityEngine;
@@ -13,6 +10,7 @@ public class MainView : MonoBehaviour
 
     public GameObject prebEnemy;
     public GameObject myPlayer;
+
     void Start()
     {
         Action<BuffModel[]> buf = ReadJson;
@@ -22,7 +20,7 @@ public class MainView : MonoBehaviour
     public void ReadJson(BuffModel[] buf)
     {
         Debug.Log(buf[0].id);
-        
+
         CreateEnemy(buf[0]);
     }
 
@@ -31,22 +29,16 @@ public class MainView : MonoBehaviour
      */
     public void CreateEnemy(BuffModel buf)
     {
-        GameObject myPlayer = Instantiate(this.myPlayer);
-        myPlayer.transform.SetParent(this.transform, false);
-        myPlayer.transform.localPosition = new Vector3(-16, 1.16f, -43);
-        myPlayer.GetComponent<MyPlayer>().GetPlayerData(buf);
-        
-        
-        GameObject enemy = Instantiate(prebEnemy);
-        enemy.transform.SetParent(this.transform, false);
+        GameObject player = Instantiate(this.myPlayer, this.transform, false);
+        player.transform.localPosition = new Vector3(-16, 1.16f, -43);
+        player.GetComponent<MyPlayer>().GetPlayerData(buf);
+
+
+        GameObject enemy = Instantiate(prebEnemy, this.transform, false);
         float x = Random.Range(-20f, -12f);
         float z = Random.Range(-40f, -35f);
         enemy.transform.position = new Vector3(x, 1.6f, z);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ArrawCtrl : MonoBehaviour
 {
@@ -8,6 +6,7 @@ public class ArrawCtrl : MonoBehaviour
     private Transform nodeEnemy;
     private float speed = 20;
     public int attack;
+
     void Start()
     {
         nodeEnemy = transform.parent.Find("enemy(Clone)");
@@ -25,6 +24,7 @@ public class ArrawCtrl : MonoBehaviour
         {
             return;
         }
-        transform.position = Vector3.MoveTowards(transform.position,nodeEnemy.position,speed * Time.deltaTime);
+
+        transform.position = Vector3.MoveTowards(transform.position, nodeEnemy.position, speed * Time.deltaTime);
     }
 }

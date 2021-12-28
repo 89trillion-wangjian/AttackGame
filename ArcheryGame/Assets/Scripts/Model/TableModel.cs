@@ -14,4 +14,3 @@ namespace model
         public int ShootSpeed;
     }
 }
-
