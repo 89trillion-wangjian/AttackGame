@@ -6,50 +6,46 @@ namespace Controller
 {
     public class EnemyCtrl : MonoBehaviour
     {
-        // Start is called before the first frame update
         public int maxHp = 1000;
-        private GameObject uiGameRoot;
 
-        void Start()
+        public void Start()
         {
-            uiGameRoot = GameObject.Find("Canvas");
-            uiGameRoot.GetComponent<FightDisplayHpView>().FreshHpValue(maxHp, Role.Ememy);
+            FightDisplayHpView.Singleton.FreshHpValue(maxHp, Role.Enemy);
         }
 
-        // Update is called once per frame
-
-        void OnCollisionEnter(Collision col)
+        private void OnCollisionEnter(Collision col)
         {
             Debug.Log("开始碰撞" + col.collider.gameObject.name);
         }
 
-        void OnCollisionStay(Collision col)
+        public void OnCollisionStay(Collision col)
         {
             Debug.Log("持续碰撞中" + col.collider.gameObject.name);
         }
 
-        void OnCollisionExit(Collision col)
+        public void OnCollisionExit(Collision col)
         {
             Debug.Log("碰撞结束" + col.collider.gameObject.name);
         }
 
-        void OnTriggerEnter(Collider other)
+        public void OnTriggerEnter(Collider other)
         {
             Debug.Log("触发器开始出发:" + other.gameObject.name);
-            if (other && other.CompareTag("arraw"))
+            if (!other || !other.CompareTag("arraw"))
             {
-                maxHp -= other.gameObject.GetComponent<ArrawCtrl>().attack;
-                maxHp = Math.Max(maxHp, 0);
-                uiGameRoot.GetComponent<FightDisplayHpView>().FreshHpValue(maxHp, Role.Ememy);
-                Destroy(other.gameObject);
-                if (maxHp <= 0)
-                {
-                    Destroy(this.gameObject);
-                }
+                return;
+            }
+            maxHp -= other.gameObject.GetComponent<ArrawCtrl>().attack;
+            maxHp = Math.Max(maxHp, 0);
+            FightDisplayHpView.Singleton.FreshHpValue(maxHp, Role.Enemy);
+            Destroy(other.gameObject);
+            if (maxHp <= 0)
+            {
+                Destroy(this.gameObject);
             }
         }
 
-        void OnTriggerExit(Collider other)
+        public void OnTriggerExit(Collider other)
         {
             Debug.Log("触发器结束:" + other.gameObject.name);
         }

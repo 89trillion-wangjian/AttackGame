@@ -5,16 +5,26 @@ namespace View
 {
     public class FightDisplayHpView : MonoBehaviour
     {
-        // Start is called before the first frame update
-        public Text myHp;
-        public Text enemyHp;
+        [SerializeField] private FightDisplayHpView fightDisplayHpView;
+        
+        [SerializeField] private Text myHp;
+        
+        [SerializeField] private Text enemyHp;
 
-        /**
-     * 刷新血量信息
-     */
+        public static FightDisplayHpView Singleton;
+        public void Awake()
+        {
+            Singleton = fightDisplayHpView;
+        }
+
+        /// <summary>
+        /// 刷新血量信息
+        /// </summary>
+        /// <param name="value">数值</param>
+        /// <param name="role">角色？ 敌人or自己</param>
         public void FreshHpValue(int value, Role role)
         {
-            if (role == Role.Ememy)
+            if (role == Role.Enemy)
             {
                 enemyHp.text = "敌方血量" + value;
             }
@@ -23,13 +33,11 @@ namespace View
                 myHp.text = "我方血量" + value;
             }
         }
-
-        // Update is called once per frame
     }
 
     public enum Role
     {
         Player = 0,
-        Ememy = 1
+        Enemy = 1
     }
 }

@@ -545,8 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42a325b2c6e6c140a8ae4fc8e9c7d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 4
-  turnSpeed: 30
+  myPlayer: {fileID: 0}
   prebArrow: {fileID: 5245901260811955108, guid: 427ceb51b079f422782effbc0d1d1824,
     type: 3}
 --- !u!1 &495297734
@@ -772,6 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f73e36f67c314cb08099e37c9e76b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fightDisplayHpView: {fileID: 616091800}
   myHp: {fileID: 364699427}
   enemyHp: {fileID: 93419431}
 --- !u!1 &705507993

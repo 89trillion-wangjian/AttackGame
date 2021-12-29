@@ -123,4 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b98360492df74156a3c7b11a22ba8fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrawCtrl: {fileID: -171684032741455995}
   attack: 0

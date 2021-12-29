@@ -6,16 +6,13 @@ namespace Controller
 {
     public class MyPlayer : MonoBehaviour
     {
-        public float walkSpeed = 4f;
-
-        public float turnSpeed = 30f;
-
-        public GameObject prebArrow;
-        private Transform nodeEnemy;
         [SerializeField] private MyPlayer myPlayer;
 
-        private Player mySelf;
+        [SerializeField] private GameObject prebArrow;
 
+        private Transform nodeEnemy;
+
+        private Player mySelf;
 
         private float speed = 10f;
 
@@ -24,12 +21,13 @@ namespace Controller
         private Animator anim;
 
         private static readonly int Run = Animator.StringToHash("run");
+
         private static readonly int Idle = Animator.StringToHash("idle");
+
         private static readonly int Attack = Animator.StringToHash("attack");
 
         public static MyPlayer Singleton;
 
-        // Start is called before the first frame update
         public void Awake()
         {
             Singleton = myPlayer;
@@ -43,37 +41,32 @@ namespace Controller
         public void GetPlayerData(BuffModel playerData)
         {
             mySelf = new Player(playerData);
-
             uiGameRoot = GameObject.Find("Canvas");
             uiGameRoot.GetComponent<FightDisplayHpView>().FreshHpValue(mySelf.MaxHp, Role.Player);
         }
 
-        /**
-     * 发射弓箭
-     */
-        public void OnFire()
+        /// <summary>
+        /// 发射弓箭
+        /// </summary>
+        public void Fire()
         {
             nodeEnemy = transform.parent.Find("enemy(Clone)");
             if (!nodeEnemy)
             {
                 return;
             }
-
-            GameObject arraw = Instantiate(prebArrow, transform.parent, false);
-            arraw.GetComponent<ArrawCtrl>().InitAttack(mySelf.Atk);
+            var arrow = Instantiate(prebArrow, transform.parent, false);
+            ArrawCtrl.Singleton.InitAttackPower(mySelf.Atk);
             var position = transform.position;
-            arraw.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
-
-            arraw.transform.LookAt(nodeEnemy.position);
+            arrow.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
+            arrow.transform.LookAt(nodeEnemy.position);
         }
 
 
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetKey(KeyCode.R))
             {
-                Debug.Log("跑步动画");
                 anim.SetBool(Run, true);
             }
             else if (Input.GetKeyUp(KeyCode.R))
@@ -83,34 +76,19 @@ namespace Controller
 
             if (Input.GetKey(KeyCode.I))
             {
-                Debug.Log("待机动画");
                 anim.SetBool(Idle, true);
             }
 
-
             speed += Time.deltaTime;
-
             if (mySelf == null || speed < mySelf.ShootSpeed)
             {
                 return;
             }
-
-
-            if (Input.GetKey(KeyCode.W))
-            {
-                transform.Translate(0, 0, walkSpeed * Time.deltaTime);
-            }
-
-            if (Input.GetKey(KeyCode.S))
-            {
-                transform.Translate(0, 0, -walkSpeed * Time.deltaTime);
-            }
-
             if (Input.GetKey(KeyCode.A))
             {
                 speed = 0;
                 anim.SetTrigger(Attack);
-                Invoke("OnFire", 0.3f);
+                Invoke(nameof(Fire), 0.3f);
             }
         }
     }
