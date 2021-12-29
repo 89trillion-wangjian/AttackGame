@@ -6,7 +6,6 @@ namespace Controller
 {
     public class MyPlayer : MonoBehaviour
     {
-        [SerializeField] private MyPlayer myPlayer;
 
         [SerializeField] private GameObject prebArrow;
 
@@ -30,7 +29,7 @@ namespace Controller
 
         public void Awake()
         {
-            Singleton = myPlayer;
+            Singleton = this;
         }
 
         void Start()
@@ -55,6 +54,7 @@ namespace Controller
             {
                 return;
             }
+            anim.SetBool("atk", false);
             var arrow = Instantiate(prebArrow, transform.parent, false);
             ArrawCtrl.Singleton.InitAttackPower(mySelf.Atk);
             var position = transform.position;
@@ -87,7 +87,8 @@ namespace Controller
             if (Input.GetKey(KeyCode.A))
             {
                 speed = 0;
-                anim.SetTrigger(Attack);
+                // anim.SetTrigger(Attack);
+                anim.SetBool("atk", true);
                 Invoke(nameof(Fire), 0.3f);
             }
         }

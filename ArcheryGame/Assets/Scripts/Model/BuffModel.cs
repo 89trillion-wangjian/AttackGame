@@ -8,12 +8,19 @@ namespace Model
     public class BuffModel : BaseModel
     {
         public int id;
+
         public int Name;
+        
         public int Note;
+        
         public int MaxHp;
+        
         public int Atk;
+        
         public int Def;
+        
         public int ShootSpeed;
+        
         public Dictionary<string, string> ParsePerValue { get; set; }
 
         public override object Key()

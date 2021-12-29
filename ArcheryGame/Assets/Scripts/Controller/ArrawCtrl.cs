@@ -5,7 +5,6 @@ namespace Controller
 {
     public class ArrawCtrl : MonoBehaviour
     {
-        [SerializeField] private ArrawCtrl arrawCtrl;
         
         private Transform nodeEnemy;
         
@@ -16,7 +15,7 @@ namespace Controller
         public static ArrawCtrl Singleton;
         public void Awake()
         {
-            Singleton = arrawCtrl;
+            Singleton = this;
         }
 
         public void Start()
