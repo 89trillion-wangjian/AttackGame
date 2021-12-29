@@ -1257,6 +1257,7 @@ MonoBehaviour:
   turnSpeed: 30
   prebArrow: {fileID: 6572023981511423759, guid: 392a3b9f3dec849d09410e7d9e47e2e6,
     type: 3}
+  myPlayer: {fileID: 8461206019551699075}
 --- !u!1 &8970493462292639313
 GameObject:
   m_ObjectHideFlags: 0

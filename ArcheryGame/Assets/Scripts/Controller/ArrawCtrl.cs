@@ -1,41 +1,34 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ArrawCtrl : MonoBehaviour
+namespace Controller
 {
-    // Start is called before the first frame update
-    private Transform nodeEnemy;
-    private float speed = 20;
-    public int attack;
-
-    void Start()
+    public class ArrawCtrl : MonoBehaviour
     {
-        nodeEnemy = transform.parent.Find("enemy(Clone)");
-        StartCoroutine(MoveToTarget());
-    }
+        // Start is called before the first frame update
+        private Transform nodeEnemy;
+        private readonly float speed = 20;
+        public int attack;
 
-    IEnumerator MoveToTarget()
-    {
-        while (transform.position != nodeEnemy.position)
+        void Start()
         {
-            transform.position = Vector3.MoveTowards(transform.position, nodeEnemy.position, speed * Time.deltaTime);
-            yield return new WaitForFixedUpdate();
+            nodeEnemy = transform.parent.Find("enemy(Clone)");
+            StartCoroutine(MoveToTarget());
+        }
+
+        IEnumerator MoveToTarget()
+        {
+            while (transform.position != nodeEnemy.position)
+            {
+                transform.position =
+                    Vector3.MoveTowards(transform.position, nodeEnemy.position, speed * Time.deltaTime);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        public void InitAttack(int atk)
+        {
+            attack = atk;
         }
     }
-
-    public void InitAttack(int atk)
-    {
-        attack = atk;
-    }
-
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     if (!nodeEnemy)
-    //     {
-    //         return;
-    //     }
-    //
-    //     transform.position = Vector3.MoveTowards(transform.position, nodeEnemy.position, speed * Time.deltaTime);
-    // }
 }
