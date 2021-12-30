@@ -16,7 +16,14 @@ namespace View
         public void Start()
         {
             Action<BuffModel[]> buf = ReadJson;
-            TableParser<BuffModel>.Parse("ArmyModel", buf);
+            try
+            {
+                TableParser<BuffModel>.Parse("ArmyModel", buf);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         private void ReadJson(BuffModel[] buf)

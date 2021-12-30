@@ -314,6 +314,18 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
+--- !u!114 &1805477275995790787
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ab8f552dae74cff935dbe20d4259a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1101 &2011892054106211789
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
