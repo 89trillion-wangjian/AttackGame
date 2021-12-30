@@ -6,16 +6,16 @@
         {
         }
 
-        private static Utils _singleton = null;
+        private static Utils singleton = null;
 
         public static Utils CreateInstance()
         {
-            if (_singleton == null)
+            if (singleton == null)
             {
-                _singleton = new Utils();
+                singleton = new Utils();
             }
 
-            return _singleton;
+            return singleton;
         }
     }
 }

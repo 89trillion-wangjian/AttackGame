@@ -1,35 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using Utils;
 
 namespace Controller
 {
     public class ArrawCtrl : MonoBehaviour
     {
-        
-        private Transform nodeEnemy;
-        
+
         private readonly float speed = 20;
-        
+
         public int attack;
 
         public static ArrawCtrl Singleton;
+
         public void Awake()
         {
             Singleton = this;
         }
 
-        public void Start()
+        public void Fire()
         {
-            nodeEnemy = transform.parent.Find("enemy(Clone)");
             StartCoroutine(MoveToTarget());
         }
 
         private IEnumerator MoveToTarget()
         {
-            while (transform.position != nodeEnemy.position)
+            while (transform.position != EnemyCtrl.Singleton.transform.position)
             {
-                transform.position 
-                    = Vector3.MoveTowards(transform.position, nodeEnemy.position, speed * Time.deltaTime);
+                transform.position
+                    = Vector3.MoveTowards(transform.position, EnemyCtrl.Singleton.transform.position, speed * Time.deltaTime);
                 yield return new WaitForFixedUpdate();
             }
         }
@@ -37,6 +37,7 @@ namespace Controller
         public void InitAttackPower(int atk)
         {
             attack = atk;
+            Fire();
         }
     }
 }

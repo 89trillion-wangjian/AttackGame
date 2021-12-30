@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Utils;
 using View;
 
 namespace Controller
@@ -7,6 +8,13 @@ namespace Controller
     public class EnemyCtrl : MonoBehaviour
     {
         public int maxHp = 1000;
+
+        public static EnemyCtrl Singleton;
+
+        public void Awake()
+        {
+            Singleton = this;
+        }
 
         public void Start()
         {
@@ -38,7 +46,7 @@ namespace Controller
             maxHp -= other.gameObject.GetComponent<ArrawCtrl>().attack;
             maxHp = Math.Max(maxHp, 0);
             FightDisplayHpView.Singleton.FreshHpValue(maxHp, Role.Enemy);
-            Destroy(other.gameObject);
+            ObjectPool.CreateInstance().RecycleObj(other.gameObject);
             if (maxHp <= 0)
             {
                 Destroy(this.gameObject);

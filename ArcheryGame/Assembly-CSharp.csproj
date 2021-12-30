@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Model\TableModel.cs" />
      <Compile Include="Assets\Scripts\TableRead\TableManager.cs" />
      <Compile Include="Assets\Scripts\TableRead\TableParser.cs" />
+     <Compile Include="Assets\Scripts\Utils\ObjectPoll.cs" />
      <Compile Include="Assets\Scripts\Utils\Utils.cs" />
      <Compile Include="Assets\Scripts\View\AnimatorAttack.cs" />
      <Compile Include="Assets\Scripts\View\FightDisplayHpView.cs" />

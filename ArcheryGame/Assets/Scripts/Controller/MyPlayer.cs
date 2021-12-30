@@ -1,12 +1,12 @@
 ﻿using Model;
 using UnityEngine;
+using Utils;
 using View;
 
 namespace Controller
 {
     public class MyPlayer : MonoBehaviour
     {
-
         [SerializeField] private GameObject prebArrow;
 
         private Transform nodeEnemy;
@@ -50,16 +50,19 @@ namespace Controller
         public void Fire()
         {
             nodeEnemy = transform.parent.Find("enemy(Clone)");
+            anim.SetTrigger("atk");
             if (!nodeEnemy)
             {
                 return;
             }
-            anim.SetBool("atk", false);
-            var arrow = Instantiate(prebArrow, transform.parent, false);
-            ArrawCtrl.Singleton.InitAttackPower(mySelf.Atk);
+
+            var arrow = ObjectPool.CreateInstance().GetObj("FrostArcher_Arrow");
+            arrow.transform.SetParent(transform.parent, false);
             var position = transform.position;
             arrow.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
             arrow.transform.LookAt(nodeEnemy.position);
+            ArrawCtrl.Singleton.InitAttackPower(mySelf.Atk);
+            
         }
 
 
@@ -84,11 +87,11 @@ namespace Controller
             {
                 return;
             }
+
             if (Input.GetKey(KeyCode.A))
             {
                 speed = 0;
-                // anim.SetTrigger(Attack);
-                anim.SetBool("atk", true);
+                anim.SetTrigger("atk");
                 Invoke(nameof(Fire), 0.3f);
             }
         }
