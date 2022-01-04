@@ -87,5 +87,9 @@ namespace Controller
                 Invoke(nameof(Fire), 0.3f);
             }
         }
+
+        public void AnimationCallBack()
+        {
+        }
     }
 }
