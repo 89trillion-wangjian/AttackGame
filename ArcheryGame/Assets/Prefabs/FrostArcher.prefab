@@ -1200,7 +1200,7 @@ GameObject:
   - component: {fileID: 2595950949193620757}
   - component: {fileID: 8461206019551699075}
   m_Layer: 0
-  m_Name: FrostArcher
+  m_Name: frostArcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1253,11 +1253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42a325b2c6e6c140a8ae4fc8e9c7d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 4
-  turnSpeed: 30
   prebArrow: {fileID: 6572023981511423759, guid: 392a3b9f3dec849d09410e7d9e47e2e6,
     type: 3}
-  myPlayer: {fileID: 8461206019551699075}
+  anim: {fileID: 2595950949193620757}
 --- !u!1 &8970493462292639313
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,13 +2,12 @@
 using Model;
 using UnityEngine;
 using Utils;
-using View;
 
 namespace Controller
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private GameObject prebArrow;
+        [SerializeField] private Animator anim;
 
         private Transform nodeEnemy;
 
@@ -18,31 +17,23 @@ namespace Controller
 
         private GameObject uiGameRoot;
 
-        private Animator anim;
-
         private static readonly int Run = Animator.StringToHash("run");
 
         private static readonly int Idle = Animator.StringToHash("idle");
 
-        private static readonly int Attack = Animator.StringToHash("attack");
+        private static readonly int Atk = Animator.StringToHash("atk");
 
         public static PlayerController Singleton;
+
 
         public void Awake()
         {
             Singleton = this;
         }
 
-        void Start()
-        {
-            anim = gameObject.GetComponent<Animator>();
-        }
-
         public void GetPlayerData(BuffModel playerData)
         {
             mySelf = new Player(playerData);
-            // uiGameRoot = GameObject.Find("Canvas");
-            // uiGameRoot.GetComponent<FightDisplayHpView>().FreshHpValue(mySelf.MaxHp, Role.Player);
             ArcheryModel.CreateInstance().PlayerHp = mySelf.MaxHp;
         }
 
@@ -52,7 +43,7 @@ namespace Controller
         public void Fire()
         {
             nodeEnemy = transform.parent.Find("enemy(Clone)");
-            anim.SetTrigger("atk");
+            anim.SetTrigger(Atk);
             if (!nodeEnemy)
             {
                 return;
@@ -92,32 +83,9 @@ namespace Controller
             if (Input.GetKey(KeyCode.A))
             {
                 speed = 0;
-                anim.SetTrigger("atk");
+                anim.SetTrigger(Atk);
                 Invoke(nameof(Fire), 0.3f);
             }
-        }
-    }
-
-
-    public class Player
-    {
-        public int id;
-        public int Name;
-        public int Note;
-        public int MaxHp;
-        public int Atk;
-        public int Def;
-        public int ShootSpeed;
-
-        public Player(BuffModel buf)
-        {
-            id = buf.id;
-            Name = buf.Name;
-            Note = buf.Note;
-            MaxHp = buf.MaxHp;
-            Atk = buf.Atk;
-            Def = buf.Def;
-            ShootSpeed = buf.ShootSpeed;
         }
     }
 }

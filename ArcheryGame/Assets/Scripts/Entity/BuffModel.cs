@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TableConfig;
+using UnityEngine.Serialization;
 
 namespace Entity
 {
@@ -9,23 +10,45 @@ namespace Entity
     {
         public int id;
 
-        public int Name;
+        public int name;
         
-        public int Note;
+        public int note;
         
-        public int MaxHp;
+        public int maxHp;
         
-        public int Atk;
+        public int atk;
         
-        public int Def;
+        public int def;
         
-        public int ShootSpeed;
+        public int shootSpeed;
         
         public Dictionary<string, string> ParsePerValue { get; set; }
 
         public override object Key()
         {
             throw new NotImplementedException();
+        }
+    }
+    
+    public class Player
+    {
+        public int ID;
+        public int Name;
+        public int Note;
+        public int MaxHp;
+        public int Atk;
+        public int Def;
+        public int ShootSpeed;
+
+        public Player(BuffModel buf)
+        {
+            ID = buf.id;
+            Name = buf.name;
+            Note = buf.note;
+            MaxHp = buf.maxHp;
+            Atk = buf.atk;
+            Def = buf.def;
+            ShootSpeed = buf.shootSpeed;
         }
     }
 }

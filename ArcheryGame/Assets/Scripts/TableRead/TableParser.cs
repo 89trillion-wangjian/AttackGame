@@ -306,12 +306,12 @@ namespace TableConfig
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError(string.Format("ParseError: Column={0} Name={1} Want={2} Get={3} Line={4}",
-                        item.Key + 1,
-                        item.Value.Name,
-                        item.Value.FieldType.Name,
-                        _value, line));
-                    Debug.LogError(e);
+                    // Debug.LogError(string.Format("ParseError: Column={0} Name={1} Want={2} Get={3} Line={4}",
+                    //     item.Key + 1,
+                    //     item.Value.Name,
+                    //     item.Value.FieldType.Name,
+                    //     _value, line));
+                    // Debug.LogError(e);
                 }
             }
 
