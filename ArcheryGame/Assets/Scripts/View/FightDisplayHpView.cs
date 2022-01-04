@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Model;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace View
@@ -6,15 +7,14 @@ namespace View
     public class FightDisplayHpView : MonoBehaviour
     {
         [SerializeField] private FightDisplayHpView fightDisplayHpView;
-        
+
         [SerializeField] private Text myHp;
-        
+
         [SerializeField] private Text enemyHp;
 
-        public static FightDisplayHpView Singleton;
         public void Awake()
         {
-            Singleton = fightDisplayHpView;
+            ArcheryModel.CreateInstance().OnRoleHpChange += FreshHpValue;
         }
 
         /// <summary>

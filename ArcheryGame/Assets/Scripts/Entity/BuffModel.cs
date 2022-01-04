@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using TableConfig;
 
-namespace Model
+namespace Entity
 {
     [Serializable]
     public class BuffModel : BaseModel

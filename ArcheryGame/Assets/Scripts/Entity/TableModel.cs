@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace model
+namespace Entity
 {
     [Serializable]
     public class TableModel

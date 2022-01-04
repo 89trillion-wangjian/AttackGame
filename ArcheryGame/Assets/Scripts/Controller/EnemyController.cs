@@ -1,15 +1,16 @@
 ﻿using System;
+using Model;
 using UnityEngine;
 using Utils;
 using View;
 
 namespace Controller
 {
-    public class EnemyCtrl : MonoBehaviour
+    public class EnemyController : MonoBehaviour
     {
         public int maxHp = 1000;
 
-        public static EnemyCtrl Singleton;
+        public static EnemyController Singleton;
 
         public void Awake()
         {
@@ -18,7 +19,7 @@ namespace Controller
 
         public void Start()
         {
-            FightDisplayHpView.Singleton.FreshHpValue(maxHp, Role.Enemy);
+            ArcheryModel.CreateInstance().EnemyHp = maxHp;
         }
 
         private void OnCollisionEnter(Collision col)
@@ -43,9 +44,11 @@ namespace Controller
             {
                 return;
             }
-            maxHp -= other.gameObject.GetComponent<ArrawCtrl>().attack;
+
+            maxHp -= other.gameObject.GetComponent<ArrawController>().attack;
             maxHp = Math.Max(maxHp, 0);
-            FightDisplayHpView.Singleton.FreshHpValue(maxHp, Role.Enemy);
+            // FightDisplayHpView.Singleton.FreshHpValue(maxHp, Role.Enemy);
+            ArcheryModel.CreateInstance().EnemyHp = maxHp;
             ObjectPool.CreateInstance().RecycleObj(other.gameObject);
             if (maxHp <= 0)
             {

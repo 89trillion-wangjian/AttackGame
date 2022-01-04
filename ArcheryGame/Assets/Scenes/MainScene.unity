@@ -1098,6 +1098,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1560324577}
+  - component: {fileID: 1560324579}
   - component: {fileID: 1560324578}
   m_Layer: 0
   m_Name: fightRoot
@@ -1136,6 +1137,19 @@ MonoBehaviour:
     type: 3}
   myPlayer: {fileID: 8767760645434875349, guid: aa14bc4e915894694b07706ae55ded52,
     type: 3}
+--- !u!114 &1560324579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560324576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffcd7ce6681e24375a42c85cb62f175c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  view: {fileID: 1560324578}
 --- !u!1 &1644159033
 GameObject:
   m_ObjectHideFlags: 0

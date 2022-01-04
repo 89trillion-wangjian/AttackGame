@@ -1,35 +1,33 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using Utils;
 
 namespace Controller
 {
-    public class ArrawCtrl : MonoBehaviour
+    public class ArrawController : MonoBehaviour
     {
-
         private readonly float speed = 20;
 
         public int attack;
 
-        public static ArrawCtrl Singleton;
+        public static ArrawController Singleton;
 
         public void Awake()
         {
             Singleton = this;
         }
 
-        public void Fire()
+        private void Fire()
         {
             StartCoroutine(MoveToTarget());
         }
 
         private IEnumerator MoveToTarget()
         {
-            while (transform.position != EnemyCtrl.Singleton.transform.position)
+            while (transform.position != EnemyController.Singleton.transform.position)
             {
                 transform.position
-                    = Vector3.MoveTowards(transform.position, EnemyCtrl.Singleton.transform.position, speed * Time.deltaTime);
+                    = Vector3.MoveTowards(transform.position, EnemyController.Singleton.transform.position,
+                        speed * Time.deltaTime);
                 yield return new WaitForFixedUpdate();
             }
         }

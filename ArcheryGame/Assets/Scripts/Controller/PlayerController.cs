@@ -1,11 +1,12 @@
-﻿using Model;
+﻿using Entity;
+using Model;
 using UnityEngine;
 using Utils;
 using View;
 
 namespace Controller
 {
-    public class MyPlayer : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         [SerializeField] private GameObject prebArrow;
 
@@ -25,7 +26,7 @@ namespace Controller
 
         private static readonly int Attack = Animator.StringToHash("attack");
 
-        public static MyPlayer Singleton;
+        public static PlayerController Singleton;
 
         public void Awake()
         {
@@ -40,8 +41,9 @@ namespace Controller
         public void GetPlayerData(BuffModel playerData)
         {
             mySelf = new Player(playerData);
-            uiGameRoot = GameObject.Find("Canvas");
-            uiGameRoot.GetComponent<FightDisplayHpView>().FreshHpValue(mySelf.MaxHp, Role.Player);
+            // uiGameRoot = GameObject.Find("Canvas");
+            // uiGameRoot.GetComponent<FightDisplayHpView>().FreshHpValue(mySelf.MaxHp, Role.Player);
+            ArcheryModel.CreateInstance().PlayerHp = mySelf.MaxHp;
         }
 
         /// <summary>
@@ -61,8 +63,7 @@ namespace Controller
             var position = transform.position;
             arrow.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
             arrow.transform.LookAt(nodeEnemy.position);
-            ArrawCtrl.Singleton.InitAttackPower(mySelf.Atk);
-            
+            ArrawController.Singleton.InitAttackPower(mySelf.Atk);
         }
 
 

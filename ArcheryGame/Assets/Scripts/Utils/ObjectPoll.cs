@@ -13,12 +13,7 @@ namespace Utils
 
         public static ObjectPool CreateInstance()
         {
-            if (singleton == null)
-            {
-                singleton = new ObjectPool();
-            }
-
-            return singleton;
+            return singleton ?? (singleton = new ObjectPool());
         }
 
         private ObjectPool()

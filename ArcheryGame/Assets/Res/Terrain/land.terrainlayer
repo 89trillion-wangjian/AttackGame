@@ -6,11 +6,11 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u7816\u5730 Terrain Layer"
-  m_DiffuseTexture: {fileID: 2800000, guid: d0ce344b7076db546add968cda141891, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: e2038a0801477d74e83c29a9295d15b3, type: 3}
+  m_Name: land
+  m_DiffuseTexture: {fileID: 2800000, guid: ef1fbc9bae2718d4a8dbe2baaa01399c, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: f3b2a952874cda74583658ed78a08ef2, type: 3}
   m_MaskMapTexture: {fileID: 0}
-  m_TileSize: {x: 6, y: 6}
+  m_TileSize: {x: 2, y: 2}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
   m_Metallic: 0
