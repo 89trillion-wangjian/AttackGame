@@ -46,7 +46,7 @@ namespace Utils
             }
             else //如果没有加载过该预设体
             {
-                prefab = Resources.Load<GameObject>("Prefabs/" + objName);
+                prefab = Resources.Load<GameObject>($"Prefabs/{objName}");
                 prefabs.Add(objName, prefab);
             }
 

@@ -26,11 +26,12 @@ namespace View
         {
             if (role == Role.Enemy)
             {
-                enemyHp.text = "敌方血量" + value;
+                enemyHp.text = $"敌方血量 {value}";
             }
+            
             else
             {
-                myHp.text = "我方血量" + value;
+                myHp.text = $"我方血量 {value}";
             }
         }
     }

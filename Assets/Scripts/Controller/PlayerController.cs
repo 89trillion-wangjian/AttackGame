@@ -39,7 +39,11 @@ namespace Controller
         /// </summary>
         public void Fire()
         {
-            nodeEnemy = transform.parent.Find("enemy(Clone)");
+            if (EnemyController.Singleton)
+            {
+                nodeEnemy = EnemyController.Singleton.transform;
+            }
+
             anim.SetTrigger(Attack);
             if (!nodeEnemy)
             {
