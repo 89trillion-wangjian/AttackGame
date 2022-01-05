@@ -22,7 +22,7 @@ namespace View
         /// </summary>
         /// <param name="value">数值</param>
         /// <param name="role">角色？ 敌人or自己</param>
-        public void FreshHpValue(int value, Role role)
+        private void FreshHpValue(int value, Role role)
         {
             if (role == Role.Enemy)
             {

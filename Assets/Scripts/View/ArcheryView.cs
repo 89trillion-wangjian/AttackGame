@@ -9,7 +9,7 @@ namespace View
     {
         [SerializeField] public GameObject prebEnemy;
 
-        [SerializeField] public GameObject myPlayer;
+        [SerializeField] public GameObject prefMyPlayer;
 
 
         /// <summary>
@@ -18,9 +18,9 @@ namespace View
         /// <param name="buf"></param>
         public void CreateRole(BuffModel buf)
         {
-            var player = Instantiate(this.myPlayer, this.transform, false);
+            var player = Instantiate(prefMyPlayer, this.transform, false);
             player.transform.localPosition = new Vector3(-16, 1.16f, -43);
-            PlayerController.Singleton.GetPlayerData(buf);
+            PlayerController.Singleton.InitPlayerData(buf);
 
             var enemy = Instantiate(prebEnemy, this.transform, false);
             var x = Random.Range(-20f, -12f);

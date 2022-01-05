@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TableConfig;
-using UnityEngine.Serialization;
 
 namespace Entity
 {

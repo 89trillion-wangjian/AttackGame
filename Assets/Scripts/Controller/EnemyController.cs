@@ -29,7 +29,7 @@ namespace Controller
                 return;
             }
 
-            maxHp -= other.gameObject.GetComponent<ArrawController>().attack;
+            maxHp -= ArrowController.Singleton.attack;
             maxHp = Math.Max(maxHp, 0);
             ArcheryModel.CreateInstance().EnemyHp = maxHp;
             ObjectPool.CreateInstance().RecycleObj(other.gameObject);
@@ -37,11 +37,6 @@ namespace Controller
             {
                 Destroy(this.gameObject);
             }
-        }
-
-        public void OnTriggerExit(Collider other)
-        {
-            Debug.Log("触发器结束:" + other.gameObject.name);
         }
     }
 }

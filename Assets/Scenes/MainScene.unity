@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prebEnemy: {fileID: 3965633314204519301, guid: 5d0a52d288fc14f9f8d0f4a09cdc4380,
     type: 3}
-  myPlayer: {fileID: 8767760645434875349, guid: aa14bc4e915894694b07706ae55ded52,
+  prefMyPlayer: {fileID: 8767760645434875349, guid: aa14bc4e915894694b07706ae55ded52,
     type: 3}
 --- !u!114 &1560324579
 MonoBehaviour:

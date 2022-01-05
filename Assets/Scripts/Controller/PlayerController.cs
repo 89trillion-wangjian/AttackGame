@@ -15,23 +15,20 @@ namespace Controller
 
         private float speed = 10f;
 
-        private GameObject uiGameRoot;
-
         private static readonly int Run = Animator.StringToHash("run");
 
         private static readonly int Idle = Animator.StringToHash("idle");
 
-        private static readonly int Atk = Animator.StringToHash("atk");
+        private static readonly int Attack = Animator.StringToHash("attack");
 
         public static PlayerController Singleton;
-
 
         public void Awake()
         {
             Singleton = this;
         }
-
-        public void GetPlayerData(BuffModel playerData)
+        
+        public void InitPlayerData(BuffModel playerData)
         {
             mySelf = new Player(playerData);
             ArcheryModel.CreateInstance().PlayerHp = mySelf.MaxHp;
@@ -43,7 +40,7 @@ namespace Controller
         public void Fire()
         {
             nodeEnemy = transform.parent.Find("enemy(Clone)");
-            anim.SetTrigger(Atk);
+            anim.SetTrigger(Attack);
             if (!nodeEnemy)
             {
                 return;
@@ -54,7 +51,7 @@ namespace Controller
             var position = transform.position;
             arrow.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
             arrow.transform.LookAt(nodeEnemy.position);
-            ArrawController.Singleton.InitAttackPower(mySelf.Atk);
+            ArrowController.Singleton.InitAttackPower(mySelf.Atk);
         }
 
 
@@ -83,7 +80,7 @@ namespace Controller
             if (Input.GetKey(KeyCode.A))
             {
                 speed = 0;
-                anim.SetTrigger(Atk);
+                anim.SetTrigger(Attack);
                 Invoke(nameof(Fire), 0.3f);
             }
         }

@@ -4,24 +4,28 @@ namespace Model
 {
     public class ArcheryModel
     {
-        public delegate void OnValueChange<T>(int val, Role role);
+        public delegate void OnValueChange(int val, Role role);
 
-        public OnValueChange<int> OnRoleHpChange;
+        public OnValueChange OnRoleHpChange;
 
         //单例
-        private static ArcheryModel Singleton = null;
+        private static ArcheryModel singleton = null;
 
         private int enemyHp = 0;
+        
         private int playerHp = 0;
 
         public static ArcheryModel CreateInstance()
         {
-            return Singleton ?? (Singleton = new ArcheryModel());
+            return singleton ?? (singleton = new ArcheryModel());
         }
 
         public int EnemyHp
         {
-            get { return enemyHp; }
+            get
+            {
+                return enemyHp;
+            }
             set
             {
                 enemyHp = value;
@@ -31,7 +35,10 @@ namespace Model
 
         public int PlayerHp
         {
-            get { return playerHp; }
+            get
+            {
+                return playerHp;
+            }
             set
             {
                 playerHp = value;
