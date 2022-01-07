@@ -33,5 +33,5 @@
 
 ## 4.流程图
 
-![draw](https://github.com/89trillion-wangjian/AttackGame/blob/master/README.png)
+![draw](https://github.com/89trillion-wangjian/AttackGame/blob/master/seq.png)
 

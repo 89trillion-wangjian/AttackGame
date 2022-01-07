@@ -10,17 +10,17 @@ namespace Entity
         public int id;
 
         public int name;
-        
+
         public int note;
-        
+
         public int maxHp;
-        
+
         public int atk;
-        
+
         public int def;
-        
+
         public int shootSpeed;
-        
+
         public Dictionary<string, string> ParsePerValue { get; set; }
 
         public override object Key()
@@ -28,7 +28,7 @@ namespace Entity
             throw new NotImplementedException();
         }
     }
-    
+
     public class Player
     {
         public int ID;
@@ -48,6 +48,18 @@ namespace Entity
             Atk = buf.atk;
             Def = buf.def;
             ShootSpeed = buf.shootSpeed;
+        }
+    }
+
+    public class Enemy
+    {
+        public int Name;
+        public int MaxHp;
+
+        public Enemy(int name, int maxHp)
+        {
+            this.Name = name;
+            this.MaxHp = maxHp;
         }
     }
 }

@@ -9,7 +9,9 @@ namespace Controller
     {
         [SerializeField] private Animator anim;
 
-        private Transform nodeEnemy;
+        private GameObject targetEnemy;
+
+        private Enemy targetEnemyInfo;
 
         private Player mySelf;
 
@@ -23,15 +25,21 @@ namespace Controller
 
         public static PlayerController Singleton;
 
+        private ArcheryModel archeryModel;
+
         public void Awake()
         {
             Singleton = this;
+            archeryModel = ArcheryModel.CreateInstance();
+            archeryModel.OnEnemyDie += LockEnemy;
+            
         }
         
         public void InitPlayerData(BuffModel playerData)
         {
             mySelf = new Player(playerData);
-            ArcheryModel.CreateInstance().PlayerHp = mySelf.MaxHp;
+            archeryModel.PlayerHp = mySelf.MaxHp;
+            LockEnemy();
         }
 
         /// <summary>
@@ -39,13 +47,8 @@ namespace Controller
         /// </summary>
         public void Fire()
         {
-            if (EnemyController.Singleton)
-            {
-                nodeEnemy = EnemyController.Singleton.transform;
-            }
-
             anim.SetTrigger(Attack);
-            if (!nodeEnemy)
+            if (!targetEnemy)
             {
                 return;
             }
@@ -54,8 +57,26 @@ namespace Controller
             arrow.transform.SetParent(transform.parent, false);
             var position = transform.position;
             arrow.transform.position = new Vector3(position.x, position.y + 0.3f, position.z);
-            arrow.transform.LookAt(nodeEnemy.position);
-            ArrowController.Singleton.InitAttackPower(mySelf.Atk);
+            arrow.transform.LookAt(targetEnemy.transform.position);
+            ArrowController.Singleton.InitAttackPower(mySelf.Atk, targetEnemy);
+        }
+        
+        /// <summary>
+        /// 锁定某个敌人
+        /// </summary>
+        private void LockEnemy()
+        {
+            targetEnemy = null;   
+            if (archeryModel.enemyDic.Count <= 0)
+            {
+                return;
+            }
+            //敌人的信息： Hp, Name
+            targetEnemyInfo = archeryModel.GetEnemy().Key;
+            //敌人节点
+            targetEnemy = archeryModel.GetEnemy().Value;
+            //显示当前锁定敌人的血量
+            archeryModel.EnemyHp = targetEnemyInfo.MaxHp;
         }
 
 

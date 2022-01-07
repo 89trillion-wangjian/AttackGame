@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace Controller
 {
     public class ArrowController : MonoBehaviour
     {
-        private readonly float speed = 20;
-
         public int attack = 0;
 
         public static ArrowController Singleton;
@@ -17,14 +14,14 @@ namespace Controller
             Singleton = this;
         }
 
-        private void Fire()
+        private void Fire(GameObject enemyObj)
         {
-            transform.DOMove(EnemyController.Singleton.transform.position, 1.0f);
+            transform.DOMove(enemyObj.transform.position, 1.0f);
         }
-        public void InitAttackPower(int atk)
+        public void InitAttackPower(int atk, GameObject enemyObj)
         {
             attack = atk;
-            Fire();
+            Fire(enemyObj);
         }
     }
 }

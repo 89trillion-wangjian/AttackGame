@@ -1,8 +1,8 @@
 ﻿using System;
+using Entity;
 using Model;
 using UnityEngine;
 using Utils;
-using View;
 
 namespace Controller
 {
@@ -12,14 +12,16 @@ namespace Controller
 
         public static EnemyController Singleton;
 
+        private Enemy enemyInfo;
+
         public void Awake()
         {
             Singleton = this;
         }
 
-        public void Start()
+        public void InitData(Enemy enemy)
         {
-            ArcheryModel.CreateInstance().EnemyHp = maxHp;
+            enemyInfo = enemy;
         }
 
         public void OnTriggerEnter(Collider other)
@@ -35,7 +37,8 @@ namespace Controller
             ObjectPool.CreateInstance().RecycleObj(other.gameObject);
             if (maxHp <= 0)
             {
-                Destroy(this.gameObject);
+                ArcheryModel.CreateInstance().RemoveEnemy(enemyInfo);
+                Destroy(gameObject);
             }
         }
     }

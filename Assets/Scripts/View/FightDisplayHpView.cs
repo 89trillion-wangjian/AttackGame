@@ -28,7 +28,7 @@ namespace View
             {
                 enemyHp.text = $"敌方血量 {value}";
             }
-            
+
             else
             {
                 myHp.text = $"我方血量 {value}";
